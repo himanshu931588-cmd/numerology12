@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mishraji Numerology | Know Your Destiny</title>
+    <style>
+        :root {
+            --primary: #4a148c; /* Royal Purple */
+            --accent: #d4af37;  /* Gold */
+            --bg: #fafafa;
+        }
+        body { 
+            font-family: 'Georgia', serif; 
+            background-color: var(--bg); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+        }
+        .container { 
+            background: white; 
+            padding: 3rem; 
+            border-radius: 20px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+            text-align: center; 
+            width: 400px;
+            border-top: 8px solid var(--accent);
+        }
+        h1 { 
+            color: var(--primary); 
+            margin: 0; 
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+        }
+        .tagline { 
+            color: #777; 
+            font-size: 0.9rem; 
+            margin-bottom: 30px; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        label { display: block; margin-bottom: 10px; font-weight: bold; color: var(--primary); }
+        input { 
+            width: 100%; 
+            padding: 15px; 
+            margin-bottom: 20px; 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            font-size: 1rem; 
+            box-sizing: border-box;
+        }
+        button { 
+            background: var(--primary); 
+            color: white; 
+            border: none; 
+            padding: 15px 30px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 1.1rem; 
+            width: 100%; 
+            transition: 0.4s;
+            font-weight: bold;
+        }
+        button:hover { 
+            background: #310d5e; 
+            box-shadow: 0 5px 15px rgba(74, 20, 140, 0.3);
+        }
+        #result { 
+            margin-top: 30px; 
+            padding-top: 20px; 
+            border-top: 1px dashed #ccc;
+            display: none; 
+        }
+        .number-display { 
+            font-size: 4rem; 
+            color: var(--accent); 
+            font-weight: bold; 
+            margin: 10px 0;
+        }
+        .description { font-style: italic; color: #444; line-height: 1.6; }
+        .creator-footer {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+        .creator-footer b { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Mishraji Numerology</h1>
+    <div class="tagline">Guided by Himanshu Mishra</div>
+    
+    <label for="dob">Select Date of Birth</label>
+    <input type="date" id="dob">
+    
+    <button onclick="calculatePath()">Check My Life Path</button>
+
+    <div id="result">
+        <div class="description">Your Life Path Number is:</div>
+        <div class="number-display" id="numBox"></div>
+        <p class="description" id="meaningBox"></p>
+    </div>
+
+    <div class="creator-footer">
+        Designed & Developed by <b>Himanshu Mishra</b>
+    </div>
+</div>
+
+<script>
+    const data = {
+        1: "The Leader: Born to take charge and innovate.",
+        2: "The Diplomat: You thrive on harmony and partnership.",
+        3: "The Artist: Creative, social, and full of life.",
+        4: "The Architect: Disciplined, steady, and reliable.",
+        5: "The Traveler: You seek freedom and new experiences.",
+        6: "The Guardian: A natural nurturer and family-oriented.",
+        7: "The Mystic: Analytical and deeply spiritual.",
+        8: "The Executive: Success, wealth, and power follow you.",
+        9: "The Saint: Compassionate and worldly-wise.",
+        11: "The Master Intuitive: High spiritual energy.",
+        22: "The Master Builder: Capable of massive achievements."
+    };
+
+    function reduce(n) {
+        if (n == 11 || n == 22 || n == 33) return n;
+        while (n > 9) {
+            n = n.toString().split('').reduce((sum, d) => sum + parseInt(d), 0);
+            if (n == 11 || n == 22) break;
+        }
+        return n;
+    }
+
+    function calculatePath() {
+        const birthday = document.getElementById('dob').value;
+        if (!birthday) return alert("Please enter your birth date!");
+
+        const [y, m, d] = birthday.split('-');
+        
+        // Numerology calculation (Day + Month + Year)
+        const dSum = reduce(parseInt(d));
+        const mSum = reduce(parseInt(m));
+        const ySum = reduce(parseInt(y));
+        
+        const final = reduce(dSum + mSum + ySum);
+
+        document.getElementById('numBox').innerText = final;
+        document.getElementById('meaningBox').innerText = data[final] || "A very rare and powerful destiny.";
+        document.getElementById('result').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
