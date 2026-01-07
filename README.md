@@ -27,4 +27,5 @@ The app uses the standard numerology reduction method:
 #numerology #javascript #web-app #astrology #life-path-calculator #mishraji #himanshu-mishra
 
 ---
+Link:https://turbo-fishstick-v6544x9764652p97-5500.app.github.dev/
 *Created with ❤️ for seekers of wisdom.*
